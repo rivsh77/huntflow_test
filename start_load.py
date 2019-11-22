@@ -138,8 +138,12 @@ def file_upload(account_id, access_token, file_path_account):
     except Exception as err:
         print('\n\n********************\n********************\n\.\nException caught:\n\n%s ' % (err))
 
-personal_access_token = '71e89e8af02206575b3b4ae80bf35b6386fe3085af3d4085cbc7b43505084482'
-db_file = ("C:\\Specsoft\\lic_fee\\test.xlsx")
+#personal_access_token = '71e89e8af02206575b3b4ae80bf35b6386fe3085af3d4085cbc7b43505084482'
+#db_file = ("C:\\Specsoft\\lic_fee\\test.xlsx")
+
+personal_access_token = raw_input("Please enter  personal access token\n")
+db_file = raw_input("Please enter path DB file\n")
+
 acc_id = get_account_id(personal_access_token)
 candidates = xlsParse(db_file)
 print(db_file)
