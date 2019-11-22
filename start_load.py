@@ -21,6 +21,7 @@ def get_account_id(access_token):
     return account_id
 	
 def get_vacancy_id(account_id, access_token, position_nm):
+ try:
     r = requests.get('%s/account/%s/vacancies' % (API_ENDPOINT, account_id),
                      headers={'user-agent': UA, 'Authorization': 'Bearer ' + access_token})
     j = r.text
@@ -33,8 +34,11 @@ def get_vacancy_id(account_id, access_token, position_nm):
 			vac_id = v_id
     
     return vac_id
-	
+ except Exception as err:
+    print('\n\n********************\n********************\n\.\nException caught:\n\n%s ' % (err))
+
 def get_vacancystatuses_id(account_id, access_token, status_nm):
+ try:	
     r = requests.get('%s/account/%s/vacancy/statuses' % (API_ENDPOINT, account_id),
                      headers={'user-agent': UA, 'Authorization': 'Bearer ' + access_token})
     j = r.text
@@ -44,11 +48,10 @@ def get_vacancystatuses_id(account_id, access_token, status_nm):
 		print(st_name)
 		print(s_id)
 		if st_name == status_nm:
-			st_id = s_id
-		else:
-			st_id = 'null'		
-    
+			st_id = s_id   
     return st_id
+ except Exception as err:
+    print('\n\n********************\n********************\n\.\nException caught:\n\n%s ' % (err))
 
 
 def xlsParse(xlsfile):
